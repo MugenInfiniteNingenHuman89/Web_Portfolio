@@ -1,0 +1,90 @@
+<!-- pages/projects.html -->
+<section class="space-y-7 max-w-4xl">
+  <header class="border-b-2 border-black pb-3">
+    <p class="font-redaction50 text-xs uppercase tracking-widest opacity-75">
+      BUILDS &amp; ARTIFACTS // 05
+    </p>
+    <h2 class="font-syne text-2xl md:text-4xl font-extrabold uppercase tracking-tight mt-1">
+      Projects
+    </h2>
+  </header>
+
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+    <!-- KIRI: Daftar Proyek -->
+    <aside class="md:col-span-5 border-2 border-black divide-y-2 divide-black">
+      <template x-for="(proj, idx) in portfolio?.projects || []" :key="proj.id || idx">
+        <button
+          type="button"
+          @click="activeProject = proj"
+          :class="activeProject?.id === proj.id ? 'bg-black text-white' : 'hover:bg-black/5'"
+          class="w-full text-left p-4 transition flex items-center justify-between gap-3"
+        >
+          <div>
+            <div
+              class="font-syne text-sm md:text-base font-extrabold uppercase tracking-tight"
+              x-text="proj.title"
+            ></div>
+            <div class="font-mono text-xs opacity-75 mt-0.5" x-text="proj.stack"></div>
+          </div>
+          <span class="font-mono text-sm shrink-0">→</span>
+        </button>
+      </template>
+    </aside>
+
+    <!-- KANAN: Foto & Deskripsi Proyek Aktif -->
+    <article
+      x-show="activeProject"
+      class="md:col-span-7 border-2 border-black p-5 space-y-4"
+    >
+      <div class="aspect-video w-full border-2 border-black overflow-hidden">
+        <img
+          :src="activeProject?.image || '/path/to/default-project.jpg'"
+          :alt="activeProject?.title || 'Project preview'"
+          class="w-full h-full object-cover"
+        />
+      </div>
+
+      <div class="space-y-2">
+        <div class="flex flex-wrap items-baseline justify-between gap-2">
+          <h3
+            class="font-syne text-xl md:text-2xl font-extrabold uppercase"
+            x-text="activeProject?.title"
+          ></h3>
+          <span class="font-mono text-xs opacity-75" x-text="activeProject?.year"></span>
+        </div>
+        <p
+          class="font-mono text-xs uppercase tracking-wider opacity-75"
+          x-text="activeProject?.stack"
+        ></p>
+      </div>
+
+      <p
+        class="text-sm md:text-base leading-relaxed opacity-90"
+        x-text="activeProject?.description"
+      ></p>
+
+      <div class="pt-2 flex flex-wrap gap-3 text-xs font-mono uppercase">
+        <template x-if="activeProject?.repoUrl">
+          <a
+            :href="activeProject.repoUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="border-2 border-black px-3 py-1.5 hover:bg-black hover:text-white transition"
+          >
+            Repository ↗
+          </a>
+        </template>
+        <template x-if="activeProject?.demoUrl">
+          <a
+            :href="activeProject.demoUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="border-2 border-black px-3 py-1.5 hover:bg-black hover:text-white transition"
+          >
+            Live Demo ↗
+          </a>
+        </template>
+      </div>
+    </article>
+  </div>
+</section>

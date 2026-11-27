@@ -1,0 +1,100 @@
+<div x-show="scene === 'profile'" class="space-y-6 text-white">
+  <!-- 1. Foto Profil di Tengah -->
+  <div class="flex flex-col items-center text-center border-b-2 border-[#70FF8F]/60 pb-5 space-y-2">
+    <div class="w-28 h-28 border-2 border-[#70FF8F] overflow-hidden">
+      <img
+        :src="portfolio?.profile?.photo || '/path/to/foto-ridwan.jpg'"
+        :alt="'Foto ' + (portfolio?.profile?.name || 'Ridwan')"
+        class="w-full h-full object-cover"
+      />
+    </div>
+
+    <div class="space-y-1">
+      <p class="title-brush font-redaction text-xs uppercase tracking-widest text-[#70FF8F]">
+        PERSONAL DOSSIER // 00
+      </p>
+      <h1
+        class="font-syne text-2xl md:text-3xl font-extrabold uppercase tracking-tight"
+        x-text="portfolio?.profile?.name || 'Ridwan'"
+      ></h1>
+      <p class="font-bogle text-xs md:text-sm text-white/85">
+        Domisili:
+        <span
+          class="font-semibold text-white"
+          x-text="portfolio?.profile?.birth_place || '-'"
+        ></span>
+      </p>
+    </div>
+  </div>
+
+  <!-- 2. Kiri: Media Sosial | Kanan: Riwayat Pendidikan -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+    <!-- Media Sosial -->
+    <div class="border-2 border-white/25 p-4 space-y-2.5">
+      <h2 class="font-syne text-sm font-bold uppercase tracking-wider text-[#70FF8F]">
+        Media Sosial
+      </h2>
+
+      <div class="space-y-2 text-sm">
+        <div class="flex items-center justify-between border border-white/15 px-3 py-1.5">
+          <span class="text-white/60">Git</span>
+          <span
+            class="font-mono font-semibold text-[#70FF8F]"
+            x-text="portfolio?.profile?.contact?.github || '-'"
+          ></span>
+        </div>
+
+        <div class="flex items-center justify-between border border-white/15 px-3 py-1.5">
+          <span class="text-white/60">IG</span>
+          <span
+            class="font-mono font-semibold"
+            x-text="portfolio?.profile?.contact?.ig || '-'"
+          ></span>
+        </div>
+
+        <div class="flex items-center justify-between border border-white/15 px-3 py-1.5">
+          <span class="text-white/60">X</span>
+          <span
+            class="font-mono font-semibold"
+            x-text="portfolio?.profile?.contact?.x || '-'"
+          ></span>
+        </div>
+
+        <div class="flex items-center justify-between border border-white/15 px-3 py-1.5">
+          <span class="text-white/60">Threads</span>
+          <span
+            class="font-mono font-semibold"
+            x-text="portfolio?.profile?.contact?.threads || '-'"
+          ></span>
+        </div>
+
+        <div class="flex items-center justify-between border border-white/15 px-3 py-1.5">
+          <span class="text-white/60">Tele</span>
+          <span
+            class="font-mono font-semibold"
+            x-text="portfolio?.profile?.contact?.tele || '-'"
+          ></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Riwayat Pendidikan -->
+    <div class="border-2 border-white/25 p-4 space-y-3">
+      <h2 class="font-syne text-sm font-bold uppercase tracking-wider text-[#70FF8F]">
+        Riwayat Pendidikan
+      </h2>
+
+      <ol class="space-y-2.5 text-sm">
+        <template x-for="(edu, idx) in portfolio?.profile?.education || []" :key="idx">
+          <li class="flex flex-col sm:flex-row sm:justify-between border-b border-white/15 pb-2 last:border-b-0 last:pb-0">
+            <div>
+              <span class="font-syne font-bold text-white" x-text="edu.level_name"></span>
+              <div class="text-white/75" x-text="edu.institution_name"></div>
+            </div>
+            <span class="font-mono text-xs text-[#70FF8F] mt-1 sm:mt-0" x-text="edu.year"></span>
+          </li>
+        </template>
+      </ol>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=BBH+Bogle&family=Redaction+50:ital,wght@0,400;0,700;1,400&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+  <!-- Preload gambar yang dipakai animasi hover & scene -->
+  <link rel="preload" as="image" href="./src/assets/brushp.png">
+
+  <title>Portofolio Web</title>
+  <!-- CSS (termasuk Tailwind) di-import dari main.js -->
+</head>
+<body
+  x-data="portfolioMenu"
+  @keydown.escape.window="backToHome()"
+  @mousemove.passive="onAreaMove($event)"
+  @mouseleave="resetTeks()"
+  :class="darkMode ? 'text-[#f5f3ff]' : 'text-[#111111]'"
+  class="main-bg font-sans min-h-screen flex flex-col m-0 overflow-x-hidden transition-colors duration-300"
+>
+  <!-- LAYER EFEK KABUT (2 layer saja, diagonal berlawanan) -->
+  <div class="absolute inset-0 w-full h-full pointer-events-none">
+    <div class="relative w-full h-full">
+
+    <img
+      src="./src/assets/mist1.svg"
+      alt="Kabut Mist"
+      style="--mx: 1; --my: 1;"
+      class="efek-kabut absolute z-[60] right-[-10vw] bottom-[-10vh]"
+    />
+    <img
+      src="./src/assets/mist1.svg"
+      alt="Kabut Mist"
+      style="--mx: 1; --my: 1;"
+      class="efek-kabut absolute z-[60] left-[-12vw] top-[-12vh]"
+    />
+    <img
+      src="./src/assets/mist1.svg"
+      alt="Kabut Mist"
+      style="--mx: 1; --my: -1;"
+      class="efek-kabut absolute z-[60] left-[-10vw] bottom-[-12vh]"
+    />
+    <img
+      src="./src/assets/mist1.svg"
+      alt="Kabut Mist"
+      style="--mx: 1; --my: -1;"
+      class="efek-kabut absolute z-[60] right-[-12vw] top-[-10vh]"
+    />
+  
+    </div>
+  </div>
+
+  <!-- LOGO POJOK KIRI ATAS -->
+  <a
+    href="#theme"
+    id="logo"
+    role="button"
+    :aria-pressed="darkMode"
+    :aria-label="darkMode ? 'Ganti ke Light Mode' : 'Ganti ke Dark Mode'"
+    @click.prevent="toggleTheme()"
+    :class="darkMode
+      ? 'bg-[#1a0b2e] text-[#e2d9c9] border-[#A42CD6] shadow-[0_0_16px_rgba(164,44,214,0.85),0_0_34px_rgba(80,34,116,0.75)]'
+      : 'bg-[#5eead4] text-black border-[#70FF8F] shadow-[0_0_16px_rgba(45,212,191,0.9),0_0_34px_rgba(112,255,143,0.7)]'"
+    class="fixed top-6 left-6 z-50 w-16 h-16 rounded-full border-2 flex items-center justify-center font-redaction text-xs font-bold tracking-wider uppercase transition-all duration-300 hover:scale-105 active:scale-95 no-underline cursor-pointer select-none"
+  ></a>
+
+  <!-- NAVBAR VERTIKAL -->
+  <nav
+  x-ref="navBar"
+  class="font-blackletter nav-3d-stage absolute z-50 bottom-[6vh] flex flex-col items-start dark texts md:text-4xl font-bold uppercase tracking-wider [&>a]:px-1 [&>a]:py-2.5 [&>a]:no-underline [&_span]:text-[10vh] [&_span]:inline-block [&_span]:-rotate-6 [&_span]:transition-transform [&>a:hover_span]:rotate-6"
+>
+  <a
+    id="profile"
+    href="#profile"
+    @mouseenter="onItemEnter(0)"
+    @mouseleave="onItemLeave()"
+    @click.prevent="selectScene('profile')"
+    :style="getItemStyle(0)"
+    :class="{ 'is-active': scene === 'profile' }"
+    class="p5-item group hover:text-white transition-colors"
+  >
+    <span>P</span>ROFILE
+  </a>
+
+  <a
+    id="about"
+    href="#about"
+    @mouseenter="onItemEnter(1)"
+    @mouseleave="onItemLeave()"
+    @click.prevent="selectScene('about')"
+    :style="getItemStyle(1)"
+    :class="{ 'is-active': scene === 'about' }"
+    class="p5-item group hover:text-white transition-colors"
+  >
+    <span>A</span>BOUT
+  </a>
+
+  <a
+    id="skills"
+    href="#skills"
+    @mouseenter="onItemEnter(2)"
+    @mouseleave="onItemLeave()"
+    @click.prevent="selectScene('skills')"
+    :style="getItemStyle(2)"
+    :class="{ 'is-active': scene === 'skills' }"
+    class="p5-item group hover:text-white transition-colors"
+  >
+    <span>S</span>KILLS
+  </a>
+
+  <a
+    id="experience"
+    href="#experience"
+    @mouseenter="onItemEnter(3)"
+    @mouseleave="onItemLeave()"
+    @click.prevent="selectScene('experience')"
+    :style="getItemStyle(3)"
+    :class="{ 'is-active': scene === 'experience' }"
+    class="p5-item group hover:text-white transition-colors"
+  >
+    <span>E</span>XPERIENCE
+  </a>
+
+  <a
+    id="achievements"
+    href="#achievements"
+    @mouseenter="onItemEnter(4)"
+    @mouseleave="onItemLeave()"
+    @click.prevent="selectScene('achievements')"
+    :style="getItemStyle(4)"
+    :class="{ 'is-active': scene === 'achievements' }"
+    class="p5-item group hover:text-white transition-colors"
+  >
+    <span>A</span>CHIEVEMENTS
+  </a>
+
+  <a
+    id="projects"
+    href="#projects"
+    @mouseenter="onItemEnter(5)"
+    @mouseleave="onItemLeave()"
+    @click.prevent="selectScene('projects')"
+    :style="getItemStyle(5)"
+    :class="{ 'is-active': scene === 'projects' }"
+    class="p5-item group hover:text-white transition-colors"
+  >
+    <span>P</span>ROJECTS
+  </a>
+
+  <a
+    id="contact"
+    href="#contact"
+    @mouseenter="onItemEnter(6)"
+    @mouseleave="onItemLeave()"
+    @click.prevent="selectScene('contact')"
+    :style="getItemStyle(6)"
+    :class="{ 'is-active': scene === 'contact' }"
+    class="p5-item group hover:text-white transition-colors"
+  >
+    <span>C</span>ONTACT
+  </a>
+
+  <a
+    id="games"
+    href="#games"
+    @mouseenter="onItemEnter(7)"
+    @mouseleave="onItemLeave()"
+    @click.prevent="selectScene('games')"
+    :style="getItemStyle(7)"
+    :class="{ 'is-active': scene === 'games' }"
+    class="p5-item group hover:text-white transition-colors"
+  >
+    <span>G</span>AMES
+  </a>
+</nav> 
+
+  <!-- WADAH UTAMA PARALLAX & SCENE -->
+  <main class="flex-1 flex items-center justify-center p-4">
+    <div
+      x-ref="areaDiv"
+      id="areaDiv"
+      class="relative w-[95vw] h-[95vh] rounded-2xl overflow-hidden flex items-center justify-center [perspective:1000px]"
+    >
+      <!-- SCENE HOME -->
+      <div
+        x-show="scene === 'home'"
+        x-cloak
+        x-ref="teks"
+        id="teksIkut"
+        class="font-bogle relative z-10 md:ml-36 text-5xl md:text-7xl font-bold tracking-widest text-center text-[#70FF8F] pointer-events-none select-none px-4 teks-3d"
+      ></div>
+
+      <!-- SCENE KONTEN -->
+      <section
+        x-show="scene !== 'home'"
+        x-cloak
+        x-ref="sceneBody"
+        class="text-white relative left-[10vw] z-[60] mx-auto my-auto w-full max-w-3xl h-[80vh]"
+      >
+        <!-- Layer kuas (terpisah dari area scroll, dianimasikan transform+opacity) -->
+        <div x-ref="brushBg" class="scene-panel-bg absolute inset-0"></div>
+
+        <!-- Area scroll konten -->
+        <div class="relative h-full overflow-y-auto p-6 md:p-8">
+          <div class="sticky top-0 z-10 flex items-center justify-between border-b border-white/20 pb-3 mb-4">
+            <button
+              type="button"
+              @click="backToHome()"
+              class="font-redaction text-xs md:text-sm uppercase title-brush text-white font-bold px-3 py-1 hover:bg-white transition-colors"
+            >
+              Back [ESC]
+            </button>
+          </div>
+
+          <!-- Satu binding untuk semua scene (sebelumnya 8 x-html terpisah) -->
+          <div x-ref="sceneContent" class="scene-content-reveal" x-html="sceneHtml"></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- INDIKATOR NOMOR SCENE -->
+    <div class="scene-num-wrap absolute right-[20vh] top-[10vh] z-30 pointer-events-none select-none">
+      <div
+        x-ref="sceneNum"
+        x-text="sceneNumber"
+        class="scene-num font-blackletter dark texts text-[100px] leading-none"
+      >00.</div>
+    </div>
+  </main>
+
+<div class="absolute right-[35vw] top-[40vh] z-[-30] w-[171px] h-[171px] flex items-center justify-center pointer-events-none">
+  <!-- Lingkaran 1 (Terbesar) - bingkai berisi gambar, tengah bolong -->
+  <div
+    class="absolute w-[560px] h-[560px] rounded-full bg-[url('./src/assets/brushp.png')] bg-cover bg-center p-[10px] rotate-12"
+    style="-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude;"
+  ></div>
+
+  <!-- Lingkaran 2 (Sedang) -->
+  <div
+    class="absolute w-[268px] h-[268px] rounded-full bg-[url('./src/assets/brushp.png')] bg-cover bg-center p-[9px] -rotate-45"
+    style="-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude;"
+  ></div>
+
+  <!-- Lingkaran 3 (Terkecil) -->
+  <div
+    class="absolute w-[88px] h-[88px] rounded-full bg-[url('./src/assets/brushp.png')] bg-cover bg-center p-[8px] rotate-[135deg]"
+    style="-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude;"
+  ></div>
+</div>
+
+  <script type="module" src="/main.js"></script>
+</body>
+</html>
+
+

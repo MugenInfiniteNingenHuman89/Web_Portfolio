@@ -1,0 +1,44 @@
+<!-- pages/contact.html -->
+<section class="space-y-7 max-w-3xl">
+  <header class="border-b-2 border-black pb-3">
+    <p class="font-redaction50 text-xs uppercase tracking-widest opacity-75">
+      DIRECT CHANNEL // 06
+    </p>
+    <h2 class="font-syne text-2xl md:text-4xl font-extrabold uppercase tracking-tight mt-1">
+      Contact
+    </h2>
+  </header>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+    <template x-for="(item, idx) in portfolio?.contacts || []" :key="idx">
+      <article class="border-2 border-black p-4 space-y-3">
+        <div class="space-y-1">
+          <p class="font-mono text-xs uppercase tracking-wider opacity-70">
+            WhatsApp
+          </p>
+          <h3
+            class="font-syne text-lg font-extrabold leading-snug"
+            x-text="item.contact_name || 'Kontak'"
+          ></h3>
+          <p
+            class="font-mono text-sm opacity-85"
+            x-text="item.whatsapp_number ? `+${item.whatsapp_number.replace(/\D/g, '')}` : '-'"
+          ></p>
+        </div>
+
+        <template x-if="item.whatsapp_number">
+          <div class="pt-1 flex flex-wrap gap-2 text-xs font-mono uppercase">
+            <a
+              :href="`https://wa.me/${item.whatsapp_number.replace(/\D/g, '')}`"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="border-2 border-black px-3 py-1.5 font-bold hover:bg-black hover:text-white transition"
+            >
+              Chat WA ↗
+            </a>
+          </div>
+        </template>
+      </article>
+    </template>
+  </div>
+</section>

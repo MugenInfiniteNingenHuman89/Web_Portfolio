@@ -1,0 +1,45 @@
+<!-- pages/experience.html -->
+<section class="space-y-7 max-w-3xl">
+  <header class="border-b-2 border-black pb-3">
+    <p class="font-redaction50 text-xs uppercase tracking-widest opacity-75">
+      LOGS &amp; TRACK RECORD // 03
+    </p>
+    <h2 class="font-syne text-2xl md:text-4xl font-extrabold uppercase tracking-tight mt-1">
+      Experience
+    </h2>
+  </header>
+
+  <div class="space-y-5">
+    <template x-for="(exp, idx) in portfolio?.experience || []" :key="idx">
+      <article class="border-2 border-black p-4 space-y-3">
+        <!-- 1. Baris atas: Tahun / Durasi -->
+        <div class="flex items-center justify-between font-mono text-xs opacity-75">
+          <span
+            x-text="`${exp.start_year || '[Tahun]'} - ${exp.end_year || '[Tahun]'}`"
+          ></span>
+        </div>
+
+        <!-- 2. Grid: Kiri ambil 2 baris ([EXP] -), Kanan 2 baris (Judul & Penjelasan) -->
+        <div class="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 items-start">
+          <!-- Kiri: memanjang 2 baris -->
+          <div class="row-span-2 flex items-center gap-1.5 font-mono font-bold text-base pt-0.5">
+            <span x-text="exp.icon || '[EXP]'"></span>
+            <span>-</span>
+          </div>
+
+          <!-- Kanan baris 1: judul -->
+          <h3
+            class="font-syne text-lg font-extrabold uppercase leading-snug"
+            x-text="exp.title"
+          ></h3>
+
+          <!-- Kanan baris 2: penjelasan -->
+          <p
+            class="text-sm leading-relaxed opacity-90"
+            x-text="exp.description"
+          ></p>
+        </div>
+      </article>
+    </template>
+  </div>
+</section>

@@ -1,0 +1,165 @@
+{
+  "profile": {
+    "name": "Ridwan kontol",
+    "birth_date": "",
+    "birth_place": "Boyolali",
+    "contact": {
+      "ig": "",
+      "yt": "",
+      "x": "",
+      "tele": "",
+      "github": "https://github.com/MugenInfiniteNingenHuman89"
+    },
+    "education": [
+      {
+        "level_name": "D4 / S1 Terapan (Semester 3)",
+        "institution_name": "Teknologi Rekayasa Perangkat Lunak",
+        "year": "2025 - Sekarang"
+      }
+    ]
+  },
+  "about": [
+    {
+      "title": "Tentang Saya",
+      "description": "Mahasiswa Teknologi Rekayasa Perangkat Lunak yang fokus membangun antarmuka web interaktif, eksperimen NLP, dan prototipe mikrokontroler."
+    }
+  ],
+  "skills": [
+    {
+      "icon": "[PY]",
+      "title": "Python",
+      "description": "Pembersihan data, regex preprocessing, analisis data dengan Pandas, eksperimen NLP/teks (termasuk bahasa Indonesia), serta logika backend/prototipe AI tutor.",
+      "level": 4
+    },
+    {
+      "icon": "[JS]",
+      "title": "JavaScript",
+      "description": "Manipulasi DOM, logika interaktif modular, state management ringan dengan Alpine.js, penyimpanan lokal berbasis IndexedDB (Dexie.js), dan integrasi data/visualisasi.",
+      "level": 4
+    },
+    {
+      "icon": "[UI]",
+      "title": "HTML & Tailwind CSS",
+      "description": "Menyusun layout responsif mobile-first, tipografi ekspresif, transformasi 3D/transisi halus, serta gaya visual tajam dengan struktur markup yang bersih.",
+      "level": 4
+    },
+    {
+      "icon": "[IO]",
+      "title": "C / C++ & Embedded",
+      "description": "Pemrograman dasar algoritma serta prototipe IoT/mikrokontroler (Arduino, ESP8266, ESP32) dengan sensor, relay, LCD I2C, dan kontrol berbasis web.",
+      "level": 3
+    },
+    {
+      "icon": "[DB]",
+      "title": "SQL & Data Structure",
+      "description": "Mengorganisir data terstruktur, query dasar hingga agregasi, pencatatan transaksi/biaya, serta perancangan alur sistem dan kebutuhan perangkat lunak.",
+      "level": 3
+    },
+    {
+      "icon": "[GIT]",
+      "title": "Git & Dev Workflow",
+      "description": "Manajemen versi kode lewat Git CLI, bundling proyek web dengan Vite, serta kerja nyaman di lingkungan Linux dengan editor berbasis terminal.",
+      "level": 4
+    }
+  ],
+  "experience": [
+  {
+    "icon": "[EXP]",
+    "title": "Data Management & Survey Analysis",
+    "description": "Mengelola, membersihkan, dan mengorganisir data terstruktur—termasuk mengolah data konfirmasi absensi lintas jurusan dengan Python (Pandas & regex) serta menjaga kerapian administrasi dan alur kerja tim.",
+    "start_year": "",
+    "end_year": "Sekarang"
+  },
+  {
+    "icon": "[EXP]",
+    "title": "Team Collaboration & API Architecture Research",
+    "description": "Berkolaborasi dalam tim beranggotakan 6 orang untuk membedah arsitektur API dan mekanisme keamanan siber pada platform skala besar, membagi bagian riset, serta menyusun materi presentasi yang terstruktur.",
+    "start_year": "",
+    "end_year": "Sekarang"
+  },
+  {
+    "icon": "[EXP]",
+    "title": "Web App & System Prototyping",
+    "description": "Membangun aplikasi web lokal (seperti pencatat keuangan berbasis IndexedDB), menyusun spesifikasi kebutuhan perangkat lunak (SRS), serta merancang simulasi dan prototipe kontrol perangkat berbasis mikrokontroler.",
+    "start_year": "",
+    "end_year": "Sekarang"
+  },
+  {
+    "icon": "[EXP]",
+    "title": "Small-Scale Culinary Venture (Mini Martabak Kari)",
+    "description": "Menjalankan penjualan produk makanan kemasan secara mandiri, menghitung Harga Pokok Penjualan (HPP), menentukan harga impas (break-even), serta mencatat arus biaya dan pemasukan.",
+    "start_year": "",
+    "end_year": "Sekarang"
+  }
+],
+  "achievements": [
+  {
+    "id": "gayatama",
+    "icon": "[🏆]",
+    "title": "Gayatama Competition",
+    "competition": "Kompetisi Gayatama",
+    "date": "[Tanggal / Bulan / Tahun]",
+    "placement": "[Peringkat / Peran / Tim]",
+    "category": "[Jenis Lomba / Kategori]"
+  },
+  {
+    "id": "ach-2",
+    "icon": "[🥇]",
+    "title": "Lomba / Pencapaian 2",
+    "competition": "[Nama Lengkap Lomba]",
+    "date": "[Tanggal / Bulan / Tahun]",
+    "placement": "[Juara / Finalis / Peserta]",
+    "category": "[Jenis Lomba]"
+  },
+  {
+    "id": "ach-3",
+    "icon": "[🎖️]",
+    "title": "Lomba / Pencapaian 3",
+    "competition": "[Nama Lengkap Lomba]",
+    "date": "[Tanggal / Bulan / Tahun]",
+    "placement": "[Juara / Posisi / Peran]",
+    "category": "[Jenis Lomba]"
+  },
+  {
+    "id": "ach-4",
+    "icon": "[⭐]",
+    "title": "Lomba / Pencapaian 4",
+    "competition": "[Nama Lengkap Lomba]",
+    "date": "[Tanggal / Bulan / Tahun]",
+    "placement": "[Juara / Posisi / Peran]",
+    "category": "[Jenis Lomba]"
+  }
+],
+  "projects": [
+  {
+    "id": "proj-1",
+    "title": "Pencatat Keuangan IndexedDB",
+    "stack": "JavaScript · IndexedDB · Tailwind CSS",
+    "year": "2025",
+    "image": "/path/to/project-1.jpg",
+    "description": "Aplikasi web pencatat keuangan lokal yang menyimpan transaksi langsung di browser tanpa server eksternal.",
+    "repoUrl": "https://github.com/MugenInfiniteNingenHuman89/example-repo",
+    "demoUrl": ""
+  },
+  {
+    "id": "proj-2",
+    "title": "Simulasi Kontrol Mikrokontroler",
+    "stack": "C++ · Embedded · Simulation",
+    "year": "2025",
+    "image": "/path/to/project-2.jpg",
+    "description": "Prototipe alur logika dan simulasi kontrol perangkat keras untuk menguji respons input sebelum implementasi fisik.",
+    "repoUrl": "",
+    "demoUrl": ""
+  }
+],
+  "contacts": [
+  {
+    "contact_name": "Ridwan — WhatsApp Utama",
+    "whatsapp_number": "6281234567890"
+  },
+  {
+    "contact_name": "Ridwan — Keperluan Proyek & Kolaborasi",
+    "whatsapp_number": "6289876543210"
+  }
+]
+}

@@ -1,0 +1,91 @@
+<!-- pages/achievements.html -->
+<section
+  @keydown.escape.window="activeAchievement = null"
+  class="space-y-7 max-w-3xl relative"
+>
+  <header class="border-b-2 border-black pb-3">
+    <p class="font-redaction50 text-xs uppercase tracking-widest opacity-75">
+      HONORS &amp; MILESTONES // 04
+    </p>
+    <h2 class="font-syne text-2xl md:text-4xl font-extrabold uppercase tracking-tight mt-1">
+      Achievements
+    </h2>
+  </header>
+
+  <!-- Bagian 1: Grid Ikon Pencapaian -->
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5">
+    <template x-for="(item, idx) in portfolio?.achievements || []" :key="item.id || idx">
+      <button
+        type="button"
+        @click="activeAchievement = item"
+        class="group border-2 border-black p-5 flex flex-col items-center justify-center text-center gap-3 transition duration-150 hover:-translate-y-1 hover:shadow-[6px_6px_0px_#000]"
+      >
+        <span
+          class="font-mono text-2xl md:text-3xl leading-none transition-transform duration-150 group-hover:scale-110"
+          x-text="item.icon"
+        ></span>
+        <span
+          class="font-syne text-sm font-bold uppercase tracking-tight leading-snug"
+          x-text="item.title"
+        ></span>
+      </button>
+    </template>
+  </div>
+
+  <!-- Bagian 2: Overlay Detail di Tengah Layar (Muncul Saat Ikon Diklik) -->
+  <div
+    x-show="activeAchievement"
+    x-cloak
+    @click.self="activeAchievement = null"
+    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-[2px]"
+  >
+    <div
+      x-show="activeAchievement"
+      class="relative w-full max-w-md border-2 border-black bg-white p-6 space-y-4 shadow-[0_20px_50px_rgba(0,0,0,0.65),10px_10px_0px_#000]"
+    >
+      <div class="flex items-start justify-between border-b-2 border-black pb-3">
+        <div class="flex items-center gap-3">
+          <span
+            class="font-mono text-3xl leading-none"
+            x-text="activeAchievement?.icon"
+          ></span>
+          <div>
+            <p class="font-redaction50 text-[11px] uppercase tracking-widest opacity-70">
+              DETAIL PENCAPAIAN
+            </p>
+            <h3
+              class="font-syne text-xl font-extrabold uppercase leading-tight"
+              x-text="activeAchievement?.competition || activeAchievement?.title"
+            ></h3>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          @click="activeAchievement = null"
+          aria-label="Tutup detail"
+          class="border-2 border-black px-2.5 py-1 font-mono text-sm font-bold hover:bg-black hover:text-white transition"
+        >
+          ×
+        </button>
+      </div>
+
+      <dl class="space-y-2.5 text-sm">
+        <div class="flex justify-between gap-4 border-b border-black/15 pb-2">
+          <dt class="opacity-70">Tanggal</dt>
+          <dd class="font-mono font-semibold text-right" x-text="activeAchievement?.date || '-'"></dd>
+        </div>
+
+        <div class="flex justify-between gap-4 border-b border-black/15 pb-2">
+          <dt class="opacity-70">Peringkat / Sebagai</dt>
+          <dd class="font-semibold text-right" x-text="activeAchievement?.placement || '-'"></dd>
+        </div>
+
+        <div class="flex justify-between gap-4">
+          <dt class="opacity-70">Jenis Lomba</dt>
+          <dd class="font-semibold text-right" x-text="activeAchievement?.category || '-'"></dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>
