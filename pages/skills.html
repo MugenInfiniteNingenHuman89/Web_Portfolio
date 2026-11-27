@@ -1,0 +1,43 @@
+<!-- pages/skills.html -->
+<section class="space-y-7 max-w-3xl">
+  <header class="border-b-2 border-black pb-3">
+    <p class="font-redaction50 text-xs uppercase tracking-widest opacity-75">
+      TECH STACK &amp; CAPABILITY // 02
+    </p>
+    <h2 class="font-syne text-2xl md:text-4xl font-extrabold uppercase tracking-tight mt-1">
+      Skills
+    </h2>
+  </header>
+
+  <div id="skills-list" class="flex flex-col items-center justify-between gap-5">
+    <template x-for="(skill, idx) in portfolio?.skills || []" :key="idx">
+      <article class="border-2 border-black p-4 space-y-3">
+  <!-- 1. Tingkat keahlian -->
+  <div class="flex items-center gap-1">
+    <template x-for="n in 5" :key="n">
+      <span
+        class="w-10 h-[5px] border-2 border-black"
+        :class="n <= (skill.level || 0) ? 'bg-white' : 'bg-transparent'"
+      ></span>
+    </template>
+    <span class="ml-1 font-mono text-xs opacity-75" x-text="`${skill.level || 0}/5`"></span>
+  </div>
+
+  <!-- 2. Grid: Kiri ambil 2 baris (icon -), Kanan 2 baris (judul di atas, penjelasan di bawah) -->
+  <div class="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 items-start">
+    <!-- Kiri: memanjang 2 baris -->
+    <div class="row-span-2 flex items-center gap-1.5 font-mono font-bold text-base pt-0.5">
+      <span x-text="skill.icon"></span>
+      <span>-</span>
+    </div>
+
+    <!-- Kanan baris 1: judul -->
+    <h3 class="font-syne text-lg font-extrabold leading-snug" x-text="skill.title"></h3>
+
+    <!-- Kanan baris 2: penjelasan -->
+    <p class="text-sm leading-relaxed" x-text="skill.description"></p>
+  </div>
+	</article>    
+    </template>
+  </div>
+</section>
